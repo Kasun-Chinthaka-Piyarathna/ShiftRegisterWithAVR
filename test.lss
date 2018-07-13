@@ -1,0 +1,329 @@
+
+test.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000008  00800100  00000156  000001ca  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000156  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .debug_aranges 00000020  00000000  00000000  000001d2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_pubnames 0000005f  00000000  00000000  000001f2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   00000259  00000000  00000000  00000251  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 0000019b  00000000  00000000  000004aa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   0000021a  00000000  00000000  00000645  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000070  00000000  00000000  00000860  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    000000ed  00000000  00000000  000008d0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    0000006c  00000000  00000000  000009bd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000048  00000000  00000000  00000a29  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   8:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  10:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  14:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  18:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  1c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  20:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  24:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  28:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  2c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  30:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  34:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  38:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  3c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  40:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  44:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  48:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  4c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  50:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  54:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  58:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  5c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  60:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  64:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e6 e5       	ldi	r30, 0x56	; 86
+  7c:	f1 e0       	ldi	r31, 0x01	; 1
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <.do_copy_data_start>
+
+00000080 <.do_copy_data_loop>:
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+
+00000084 <.do_copy_data_start>:
+  84:	a8 30       	cpi	r26, 0x08	; 8
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <.do_copy_data_loop>
+  8a:	0e 94 75 00 	call	0xea	; 0xea <main>
+  8e:	0c 94 a9 00 	jmp	0x152	; 0x152 <_exit>
+
+00000092 <__bad_interrupt>:
+  92:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000096 <HC595Init>:
+//Initialize HC595 System
+
+void HC595Init()
+{
+   //Make the Data(DS), Shift clock (SH_CP), Store Clock (ST_CP) lines output
+   HC595_DDR|=((1<<HC595_SH_CP_POS)|(1<<HC595_ST_CP_POS)|(1<<HC595_DS_POS));
+  96:	84 b1       	in	r24, 0x04	; 4
+  98:	87 60       	ori	r24, 0x07	; 7
+  9a:	84 b9       	out	0x04, r24	; 4
+}
+  9c:	08 95       	ret
+
+0000009e <HC595Pulse>:
+//Sends a clock pulse on SH_CP line
+void HC595Pulse()
+{
+   //Pulse the Shift Clock
+
+   HC595_PORT|=(1<<HC595_SH_CP_POS);//HIGH
+  9e:	29 9a       	sbi	0x05, 1	; 5
+
+   HC595_PORT&=(~(1<<HC595_SH_CP_POS));//LOW
+  a0:	29 98       	cbi	0x05, 1	; 5
+
+}
+  a2:	08 95       	ret
+
+000000a4 <HC595Latch>:
+//Sends a clock pulse on ST_CP line
+void HC595Latch()
+{
+   //Pulse the Store Clock
+
+   HC595_PORT|=(1<<HC595_ST_CP_POS);//HIGH
+  a4:	2a 9a       	sbi	0x05, 2	; 5
+    can be achieved.
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+  a6:	81 e0       	ldi	r24, 0x01	; 1
+  a8:	98 2f       	mov	r25, r24
+  aa:	9a 95       	dec	r25
+  ac:	f1 f7       	brne	.-4      	; 0xaa <HC595Latch+0x6>
+   _delay_loop_1(1);
+
+   HC595_PORT&=(~(1<<HC595_ST_CP_POS));//LOW
+  ae:	2a 98       	cbi	0x05, 2	; 5
+  b0:	8a 95       	dec	r24
+  b2:	f1 f7       	brne	.-4      	; 0xb0 <HC595Latch+0xc>
+   _delay_loop_1(1);
+}
+  b4:	08 95       	ret
+
+000000b6 <HC595Write>:
+   and then latched. The byte is then available on
+   output line Q0 to Q7 of the HC595 IC.
+
+*/
+void HC595Write(uint8_t data)
+{
+  b6:	90 e0       	ldi	r25, 0x00	; 0
+   //Order is MSB first
+   for(uint8_t i=0;i<8;i++)
+   {
+      //Output the data on DS line according to the
+      //Value of MSB
+      if(data & 0b10000000)
+  b8:	87 ff       	sbrs	r24, 7
+  ba:	02 c0       	rjmp	.+4      	; 0xc0 <HC595Write+0xa>
+      {
+         //MSB is 1 so output high
+
+         HC595DataHigh();
+  bc:	28 9a       	sbi	0x05, 0	; 5
+  be:	01 c0       	rjmp	.+2      	; 0xc2 <HC595Write+0xc>
+      }
+      else
+      {
+         //MSB is 0 so output high
+         HC595DataLow();
+  c0:	28 98       	cbi	0x05, 0	; 5
+//Sends a clock pulse on SH_CP line
+void HC595Pulse()
+{
+   //Pulse the Shift Clock
+
+   HC595_PORT|=(1<<HC595_SH_CP_POS);//HIGH
+  c2:	29 9a       	sbi	0x05, 1	; 5
+
+   HC595_PORT&=(~(1<<HC595_SH_CP_POS));//LOW
+  c4:	29 98       	cbi	0x05, 1	; 5
+void HC595Write(uint8_t data)
+{
+   //Send each 8 bits serially
+
+   //Order is MSB first
+   for(uint8_t i=0;i<8;i++)
+  c6:	9f 5f       	subi	r25, 0xFF	; 255
+  c8:	98 30       	cpi	r25, 0x08	; 8
+  ca:	11 f0       	breq	.+4      	; 0xd0 <HC595Write+0x1a>
+         //MSB is 0 so output high
+         HC595DataLow();
+      }
+
+      HC595Pulse();  //Pulse the Clock line
+      data=data<<1;  //Now bring next bit at MSB position
+  cc:	88 0f       	add	r24, r24
+  ce:	f4 cf       	rjmp	.-24     	; 0xb8 <HC595Write+0x2>
+
+   }
+
+   //Now all 8 bits have been transferred to shift register
+   //Move them to output latch at one
+   HC595Latch();
+  d0:	0e 94 52 00 	call	0xa4	; 0xa4 <HC595Latch>
+}
+  d4:	08 95       	ret
+
+000000d6 <Wait>:
+Simple Delay function approx 0.5 seconds
+
+*/
+
+void Wait()
+{
+  d6:	20 e0       	ldi	r18, 0x00	; 0
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+  d8:	40 e0       	ldi	r20, 0x00	; 0
+  da:	50 e0       	ldi	r21, 0x00	; 0
+  dc:	ca 01       	movw	r24, r20
+  de:	01 97       	sbiw	r24, 0x01	; 1
+  e0:	f1 f7       	brne	.-4      	; 0xde <Wait+0x8>
+   for(uint8_t i=0;i<30;i++)
+  e2:	2f 5f       	subi	r18, 0xFF	; 255
+  e4:	2e 31       	cpi	r18, 0x1E	; 30
+  e6:	d1 f7       	brne	.-12     	; 0xdc <Wait+0x6>
+   {
+      _delay_loop_2(0);
+   }
+}
+  e8:	08 95       	ret
+
+000000ea <main>:
+
+void main()
+{
+  ea:	cf 92       	push	r12
+  ec:	df 92       	push	r13
+  ee:	ef 92       	push	r14
+  f0:	ff 92       	push	r15
+  f2:	1f 93       	push	r17
+  f4:	df 93       	push	r29
+  f6:	cf 93       	push	r28
+  f8:	cd b7       	in	r28, 0x3d	; 61
+  fa:	de b7       	in	r29, 0x3e	; 62
+  fc:	28 97       	sbiw	r28, 0x08	; 8
+  fe:	0f b6       	in	r0, 0x3f	; 63
+ 100:	f8 94       	cli
+ 102:	de bf       	out	0x3e, r29	; 62
+ 104:	0f be       	out	0x3f, r0	; 63
+ 106:	cd bf       	out	0x3d, r28	; 61
+                        0b11111111,
+                        0b01111110,
+                        0b00111100,
+                        0b00011000,
+                        0b00000000,
+                     };
+ 108:	de 01       	movw	r26, r28
+ 10a:	11 96       	adiw	r26, 0x01	; 1
+ 10c:	e0 e0       	ldi	r30, 0x00	; 0
+ 10e:	f1 e0       	ldi	r31, 0x01	; 1
+ 110:	88 e0       	ldi	r24, 0x08	; 8
+ 112:	01 90       	ld	r0, Z+
+ 114:	0d 92       	st	X+, r0
+ 116:	81 50       	subi	r24, 0x01	; 1
+ 118:	e1 f7       	brne	.-8      	; 0x112 <main+0x28>
+//Initialize HC595 System
+
+void HC595Init()
+{
+   //Make the Data(DS), Shift clock (SH_CP), Store Clock (ST_CP) lines output
+   HC595_DDR|=((1<<HC595_SH_CP_POS)|(1<<HC595_ST_CP_POS)|(1<<HC595_DS_POS));
+ 11a:	84 b1       	in	r24, 0x04	; 4
+ 11c:	87 60       	ori	r24, 0x07	; 7
+ 11e:	84 b9       	out	0x04, r24	; 4
+ 120:	10 e0       	ldi	r17, 0x00	; 0
+
+   while(1)
+   {
+      for(uint8_t i=0;i<8;i++)
+      {
+         HC595Write(led_pattern[i]);   //Write the data to HC595
+ 122:	6e 01       	movw	r12, r28
+ 124:	08 94       	sec
+ 126:	c1 1c       	adc	r12, r1
+ 128:	d1 1c       	adc	r13, r1
+ 12a:	ee 24       	eor	r14, r14
+ 12c:	ff 24       	eor	r15, r15
+ 12e:	f6 01       	movw	r30, r12
+ 130:	e1 0f       	add	r30, r17
+ 132:	f1 1d       	adc	r31, r1
+ 134:	80 81       	ld	r24, Z
+ 136:	0e 94 5b 00 	call	0xb6	; 0xb6 <HC595Write>
+ 13a:	20 e0       	ldi	r18, 0x00	; 0
+ 13c:	c7 01       	movw	r24, r14
+ 13e:	01 97       	sbiw	r24, 0x01	; 1
+ 140:	f1 f7       	brne	.-4      	; 0x13e <main+0x54>
+
+*/
+
+void Wait()
+{
+   for(uint8_t i=0;i<30;i++)
+ 142:	2f 5f       	subi	r18, 0xFF	; 255
+ 144:	2e 31       	cpi	r18, 0x1E	; 30
+ 146:	d1 f7       	brne	.-12     	; 0x13c <main+0x52>
+
+   HC595Init();
+
+   while(1)
+   {
+      for(uint8_t i=0;i<8;i++)
+ 148:	1f 5f       	subi	r17, 0xFF	; 255
+ 14a:	18 30       	cpi	r17, 0x08	; 8
+ 14c:	80 f3       	brcs	.-32     	; 0x12e <main+0x44>
+ 14e:	10 e0       	ldi	r17, 0x00	; 0
+ 150:	ee cf       	rjmp	.-36     	; 0x12e <main+0x44>
+
+00000152 <_exit>:
+ 152:	f8 94       	cli
+
+00000154 <__stop_program>:
+ 154:	ff cf       	rjmp	.-2      	; 0x154 <__stop_program>

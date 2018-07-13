@@ -1,0 +1,292 @@
+   1               		.file	"test.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	HC595Init
+  18               	HC595Init:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 84B1      		in r24,36-32
+  25 0002 8760      		ori r24,lo8(7)
+  26 0004 84B9      		out 36-32,r24
+  27               	/* epilogue start */
+  28               	.LM3:
+  29 0006 0895      		ret
+  30               	.LFE6:
+  32               	.global	HC595Pulse
+  34               	HC595Pulse:
+  35               	.LFB7:
+  36               	.LM4:
+  37               	/* prologue: function */
+  38               	/* frame size = 0 */
+  39               	.LM5:
+  40 0008 299A      		sbi 37-32,1
+  41               	.LM6:
+  42 000a 2998      		cbi 37-32,1
+  43               	/* epilogue start */
+  44               	.LM7:
+  45 000c 0895      		ret
+  46               	.LFE7:
+  48               	.global	HC595Latch
+  50               	HC595Latch:
+  51               	.LFB8:
+  52               	.LM8:
+  53               	/* prologue: function */
+  54               	/* frame size = 0 */
+  55               	.LM9:
+  56 000e 2A9A      		sbi 37-32,2
+  57               	.LBB20:
+  58               	.LBB21:
+  59               	.LM10:
+  60 0010 81E0      		ldi r24,lo8(1)
+  61 0012 982F      		mov r25,r24
+  62               	.LVL0:
+  63               	/* #APP */
+  64               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  65 0014 9A95      		1: dec r25
+  66 0016 01F4      		brne 1b
+  67               	 ;  0 "" 2
+  68               	/* #NOAPP */
+  69               	.LBE21:
+  70               	.LBE20:
+  71               	.LM11:
+  72 0018 2A98      		cbi 37-32,2
+  73               	.LBB22:
+  74               	.LBB23:
+  75               	.LM12:
+  76               	/* #APP */
+  77               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  78 001a 8A95      		1: dec r24
+  79 001c 01F4      		brne 1b
+  80               	 ;  0 "" 2
+  81               	.LVL1:
+  82               	/* epilogue start */
+  83               	/* #NOAPP */
+  84               	.LBE23:
+  85               	.LBE22:
+  86               	.LM13:
+  87 001e 0895      		ret
+  88               	.LFE8:
+  90               	.global	HC595Write
+  92               	HC595Write:
+  93               	.LFB9:
+  94               	.LM14:
+  95               	.LVL2:
+  96               	/* prologue: function */
+  97               	/* frame size = 0 */
+  98               	.LM15:
+  99 0020 90E0      		ldi r25,lo8(0)
+ 100               	.LVL3:
+ 101               	.L11:
+ 102               	.LBB24:
+ 103               	.LM16:
+ 104 0022 87FF      		sbrs r24,7
+ 105 0024 00C0      		rjmp .L8
+ 106               	.LM17:
+ 107 0026 289A      		sbi 37-32,0
+ 108 0028 00C0      		rjmp .L9
+ 109               	.L8:
+ 110               	.LM18:
+ 111 002a 2898      		cbi 37-32,0
+ 112               	.L9:
+ 113               	.LBB25:
+ 114               	.LBB26:
+ 115               	.LM19:
+ 116 002c 299A      		sbi 37-32,1
+ 117               	.LM20:
+ 118 002e 2998      		cbi 37-32,1
+ 119               	.LBE26:
+ 120               	.LBE25:
+ 121               	.LM21:
+ 122 0030 9F5F      		subi r25,lo8(-(1))
+ 123 0032 9830      		cpi r25,lo8(8)
+ 124 0034 01F0      		breq .L10
+ 125               	.LM22:
+ 126 0036 880F      		lsl r24
+ 127               	.LVL4:
+ 128 0038 00C0      		rjmp .L11
+ 129               	.L10:
+ 130               	.LBE24:
+ 131               	.LM23:
+ 132 003a 0E94 0000 		call HC595Latch
+ 133               	.LVL5:
+ 134               	/* epilogue start */
+ 135               	.LM24:
+ 136 003e 0895      		ret
+ 137               	.LFE9:
+ 139               	.global	Wait
+ 141               	Wait:
+ 142               	.LFB10:
+ 143               	.LM25:
+ 144               	/* prologue: function */
+ 145               	/* frame size = 0 */
+ 146               	.LM26:
+ 147 0040 20E0      		ldi r18,lo8(0)
+ 148               	.LVL6:
+ 149               	.LBB27:
+ 150               	.LBB28:
+ 151               	.LBB29:
+ 152               	.LM27:
+ 153 0042 40E0      		ldi r20,lo8(0)
+ 154 0044 50E0      		ldi r21,hi8(0)
+ 155               	.L14:
+ 156 0046 CA01      		movw r24,r20
+ 157               	.LVL7:
+ 158               	/* #APP */
+ 159               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 160 0048 0197      		1: sbiw r24,1
+ 161 004a 01F4      		brne 1b
+ 162               	 ;  0 "" 2
+ 163               	/* #NOAPP */
+ 164               	.LBE29:
+ 165               	.LBE28:
+ 166               	.LM28:
+ 167 004c 2F5F      		subi r18,lo8(-(1))
+ 168 004e 2E31      		cpi r18,lo8(30)
+ 169 0050 01F4      		brne .L14
+ 170               	/* epilogue start */
+ 171               	.LBE27:
+ 172               	.LM29:
+ 173 0052 0895      		ret
+ 174               	.LFE10:
+ 176               	.global	main
+ 178               	main:
+ 179               	.LFB11:
+ 180               	.LM30:
+ 181 0054 CF92      		push r12
+ 182 0056 DF92      		push r13
+ 183 0058 EF92      		push r14
+ 184 005a FF92      		push r15
+ 185 005c 1F93      		push r17
+ 186 005e DF93      		push r29
+ 187 0060 CF93      		push r28
+ 188 0062 CDB7      		in r28,__SP_L__
+ 189 0064 DEB7      		in r29,__SP_H__
+ 190 0066 2897      		sbiw r28,8
+ 191 0068 0FB6      		in __tmp_reg__,__SREG__
+ 192 006a F894      		cli
+ 193 006c DEBF      		out __SP_H__,r29
+ 194 006e 0FBE      		out __SREG__,__tmp_reg__
+ 195 0070 CDBF      		out __SP_L__,r28
+ 196               	/* prologue: function */
+ 197               	/* frame size = 8 */
+ 198               	.LM31:
+ 199 0072 DE01      		movw r26,r28
+ 200 0074 1196      		adiw r26,1
+ 201 0076 E0E0      		ldi r30,lo8(C.1.1288)
+ 202 0078 F0E0      		ldi r31,hi8(C.1.1288)
+ 203 007a 88E0      		ldi r24,lo8(8)
+ 204               	.L18:
+ 205 007c 0190      		ld r0,Z+
+ 206 007e 0D92      		st X+,r0
+ 207 0080 8150      		subi r24,lo8(-(-1))
+ 208 0082 01F4      		brne .L18
+ 209               	.LBB30:
+ 210               	.LBB31:
+ 211               	.LM32:
+ 212 0084 84B1      		in r24,36-32
+ 213 0086 8760      		ori r24,lo8(7)
+ 214 0088 84B9      		out 36-32,r24
+ 215 008a 10E0      		ldi r17,lo8(0)
+ 216               	.LVL8:
+ 217               	.LBE31:
+ 218               	.LBE30:
+ 219               	.LBB32:
+ 220               	.LM33:
+ 221 008c 6E01      		movw r12,r28
+ 222 008e 0894      		sec
+ 223 0090 C11C      		adc r12,__zero_reg__
+ 224 0092 D11C      		adc r13,__zero_reg__
+ 225               	.LBB33:
+ 226               	.LBB34:
+ 227               	.LBB35:
+ 228               	.LBB36:
+ 229               	.LBB37:
+ 230               	.LM34:
+ 231 0094 EE24      		clr r14
+ 232 0096 FF24      		clr r15
+ 233               	.LVL9:
+ 234               	.L26:
+ 235               	.LBE37:
+ 236               	.LBE36:
+ 237               	.LBE35:
+ 238               	.LBE34:
+ 239               	.LBE33:
+ 240               	.LM35:
+ 241 0098 F601      		movw r30,r12
+ 242 009a E10F      		add r30,r17
+ 243 009c F11D      		adc r31,__zero_reg__
+ 244 009e 8081      		ld r24,Z
+ 245               	.LVL10:
+ 246 00a0 0E94 0000 		call HC595Write
+ 247               	.LVL11:
+ 248 00a4 20E0      		ldi r18,lo8(0)
+ 249               	.LVL12:
+ 250               	.L19:
+ 251               	.LBB42:
+ 252               	.LBB41:
+ 253               	.LBB40:
+ 254               	.LBB39:
+ 255               	.LBB38:
+ 256               	.LM36:
+ 257 00a6 C701      		movw r24,r14
+ 258               	.LVL13:
+ 259               	/* #APP */
+ 260               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 261 00a8 0197      		1: sbiw r24,1
+ 262 00aa 01F4      		brne 1b
+ 263               	 ;  0 "" 2
+ 264               	/* #NOAPP */
+ 265               	.LBE38:
+ 266               	.LBE39:
+ 267               	.LM37:
+ 268 00ac 2F5F      		subi r18,lo8(-(1))
+ 269 00ae 2E31      		cpi r18,lo8(30)
+ 270 00b0 01F4      		brne .L19
+ 271               	.LBE40:
+ 272               	.LBE41:
+ 273               	.LBE42:
+ 274               	.LM38:
+ 275 00b2 1F5F      		subi r17,lo8(-(1))
+ 276 00b4 1830      		cpi r17,lo8(8)
+ 277 00b6 00F0      		brlo .L26
+ 278 00b8 10E0      		ldi r17,lo8(0)
+ 279 00ba 00C0      		rjmp .L26
+ 280               	.LBE32:
+ 281               	.LFE11:
+ 283               		.data
+ 286               	C.1.1288:
+ 287 0000 81        		.byte	-127
+ 288 0001 C3        		.byte	-61
+ 289 0002 E7        		.byte	-25
+ 290 0003 FF        		.byte	-1
+ 291 0004 7E        		.byte	126
+ 292 0005 3C        		.byte	60
+ 293 0006 18        		.byte	24
+ 294 0007 00        		.byte	0
+ 359               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 test.c
+C:\Users\KASUNC~1\AppData\Local\Temp/ccAhzQFh.s:2      *ABS*:0000003f __SREG__
+C:\Users\KASUNC~1\AppData\Local\Temp/ccAhzQFh.s:3      *ABS*:0000003e __SP_H__
+C:\Users\KASUNC~1\AppData\Local\Temp/ccAhzQFh.s:4      *ABS*:0000003d __SP_L__
+C:\Users\KASUNC~1\AppData\Local\Temp/ccAhzQFh.s:5      *ABS*:00000034 __CCP__
+C:\Users\KASUNC~1\AppData\Local\Temp/ccAhzQFh.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\KASUNC~1\AppData\Local\Temp/ccAhzQFh.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\KASUNC~1\AppData\Local\Temp/ccAhzQFh.s:18     .text:00000000 HC595Init
+C:\Users\KASUNC~1\AppData\Local\Temp/ccAhzQFh.s:34     .text:00000008 HC595Pulse
+C:\Users\KASUNC~1\AppData\Local\Temp/ccAhzQFh.s:50     .text:0000000e HC595Latch
+C:\Users\KASUNC~1\AppData\Local\Temp/ccAhzQFh.s:92     .text:00000020 HC595Write
+C:\Users\KASUNC~1\AppData\Local\Temp/ccAhzQFh.s:141    .text:00000040 Wait
+C:\Users\KASUNC~1\AppData\Local\Temp/ccAhzQFh.s:178    .text:00000054 main
+C:\Users\KASUNC~1\AppData\Local\Temp/ccAhzQFh.s:286    .data:00000000 C.1.1288
+
+UNDEFINED SYMBOLS
+__do_copy_data
